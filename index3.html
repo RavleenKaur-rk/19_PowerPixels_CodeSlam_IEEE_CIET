@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStyle - Building High-Value Fashion Brands</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Using the exact blue from the image */
+            --primary-blue: #0047FF; 
+            --dark-blue: #1a1a2e;
+            --light-gray: #f0f0f0; /* Adjusted for background color in the screenshot */
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--light-gray);
+        }
+
+        /* Utility Classes (Matching style elements in the image) */
+        .card-label {
+            font-size: 0.75rem; /* Adjusted slightly from 0.7rem for better readability/match */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 0.75rem; /* Reduced spacing */
+        }
+        
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        .section-header-title {
+            font-size: 2.5rem; /* For card/secondary titles */
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 2px;
+            transition: opacity 0.3s;
+        }
+
+        .read-more:hover {
+            opacity: 0.7;
+        }
+        
+        /* Layout Structure */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            position: relative;
+        }
+
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Social Icons (Left Dots) */
+        .social-icons {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 100;
+        }
+
+        .social-icon {
+            width: 12px;
+            height: 12px;
+            background: var(--text-dark);
+            border-radius: 50%;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-blue);
+        }
+
+        /* Hero Section - MODIFIED FOR FLIPPED LAYOUT */
+        .hero {
+            margin-top: 80px;
+            padding: 10rem 5% 5rem; 
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+            /* FLIP: Change grid column order (Hero Content is 2nd column) */
+            grid-template-areas: "image content";
+        }
+        
+        /* Assign grid areas */
+        .hero-image-container {
+            grid-area: image;
+        }
+
+        .hero-content {
+            grid-area: content;
+        }
+        /* END FLIP MODIFICATIONS */
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* Large Blue Circle 1 (Now Top Left, slightly off-canvas) */
+        .hero-bg-shapes::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            top: -450px; /* Moves it up */
+            /* FLIP: Change position from 'right' to 'left' */
+            left: -250px; 
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            /* FLIP: Aligns content to the right */
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        /* FLIP: Text elements need right-alignment inside right-aligned block */
+        .hero-content h1, .hero-content .card-label, .hero-subtitle {
+            text-align: right; 
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem; /* Reduced space from the original code to match screenshot */
+            letter-spacing: -1px;
+            color: var(--white); /* Text color inside the blue area */
+        }
+        
+        .hero-label {
+            color: var(--white) !important;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--white); /* Text color inside the blue area */
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-subtitle .highlight {
+            color: var(--white); /* Keep highlight white inside the blue area */
+            font-weight: 700;
+        }
+
+        .hero-image-container {
+            position: relative;
+            z-index: 3; /* Placed above the blue circle */
+            display: flex;
+            /* FLIP: Changed to align right for image overlap effect */
+            justify-content: flex-end; 
+            align-items: center;
+            padding-top: 5rem; /* Space from the top edge for image overlap */
+            /* FLIP: Changed from padding-left to padding-right and reduced */
+            padding-right: 20%; 
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 450px; /* Reduced width slightly */
+            height: 600px;
+            /* UPDATED IMAGE LINK */
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsU7TEQaCu3bvCT7wZgfZG5xjjSJ-sgjpPgA&s') center/cover;
+            border-radius: 4px; /* Squarer corners like the screenshot */
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            /* Transform for slight tilt, often used in this style */
+            transform: rotate(3deg); /* FLIP: Changed rotation direction */
+        }
+        
+        /* Image and Text placement adjustments for Hero to match screenshot */
+        .hero-content {
+            margin-top: 5rem; /* Push content down slightly */
+        }
+        
+        /* Overlapping Cards Section (Powered by TechStyle LABS & Innovation) */
+        .section-innovation-overlap {
+            padding: 8rem 5% 0; /* No bottom padding here, connects to the next section */
+            background: var(--light-gray);
+            position: relative;
+        }
+
+        .overlap-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 650px; /* Reduced height to minimize whitespace */
+        }
+        
+        /* Small White Text Section with Blue Background (Between Hero and Overlap) */
+        .white-text-bg-blue {
+            position: absolute;
+            top: 250px; /* Positioned to overlap the image */
+            /* FLIP: Changed from 'left' to 'right' */
+            right: 5%;
+            background: var(--white);
+            padding: 1.5rem;
+            z-index: 5;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .white-text-bg-blue p {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Innovation Card Section - Directly follows the Overlap */
+        .innovation-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 550px; /* Reduced height to minimize whitespace */
+        }
+        
+        /* General Card Styling */
+        .card-wrapper {
+            position: absolute;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15); /* Softer shadow */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-wrapper:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 3rem;
+        }
+
+        /* Specific Card Styling (Matching the Image) */
+
+        /* Top Left Image Card (Small red shirt woman) */
+        .card-1 {
+            width: 250px;
+            height: 250px;
+            top: 10px;
+            left: 50px; 
+            z-index: 3;
+            transform: rotate(-5deg); /* Slight rotation to match image */
+        }
+
+        .card-1 .card-image {
+            /* Placeholder: Red top woman image */
+            background-image: url('https://images.unsplash.com/photo-1574574744426-5381f158525b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        /* Middle Image Card (Man on bike/scooter) */
+        .card-2 {
+            width: 350px;
+            height: 350px;
+            top: 180px; 
+            left: 220px; 
+            z-index: 4;
+            transform: rotate(3deg); /* Slight rotation to match image */
+        }
+
+        .card-2 .card-image {
+            /* Placeholder: Man on bike image */
+            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        /* Top Right Text Card (Powered by TechStyle LABS) */
+        .card-3-text {
+            width: 500px;
+            top: 50px;
+            right: 50px;
+            z-index: 5;
+            padding: 3rem;
+            background: var(--white);
+        }
+
+        .card-3-text .section-header-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Large Blue Circle 2 (Middle Left) */
+        .blue-circle-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            top: -150px;
+            left: -150px;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        /* Innovation Section (Innovation Text & Image) */
+        .innovation-section {
+            padding: 0 5% 4rem; /* Connects from the previous section, gives bottom padding */
+            position: relative;
+        }
+        
+        .innovation-container {
+             max-width: 1400px;
+             margin: 0 auto;
+             position: relative;
+             min-height: 450px;
+        }
+        
+        /* Innovation Text Card (Left) */
+        .card-4-text {
+            width: 450px;
+            padding: 3rem;
+            top: 50px;
+            left: 50px;
+            z-index: 3;
+        }
+        
+        .card-4-text .section-header-title {
+            font-size: 2.5rem;
+        }
+
+        /* Innovation Image Card (Right) - Woman with phone */
+        .card-5-image {
+            width: 500px;
+            height: 400px;
+            top: 0;
+            right: 50px;
+            z-index: 2;
+            transform: rotate(2deg);
+        }
+        
+        .card-5-image .card-image {
+            /* Placeholder: Woman with phone image */
+            background-image: url('https://images.unsplash.com/photo-1533038500212-6f2c25390779?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        /* Membership Section (The secret to our success - Blue Card) */
+        .membership-section {
+            padding: 8rem 5% 0;
+            background: var(--light-gray);
+            position: relative;
+        }
+
+        .membership-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .membership-text {
+             max-width: 500px;
+        }
+        
+        .membership-text h2 {
+             font-size: clamp(2.5rem, 5vw, 4rem);
+             font-weight: 900;
+             line-height: 1.1;
+             margin-bottom: 2rem;
+        }
+
+        .membership-card-area {
+            position: relative;
+        }
+
+        .membership-card {
+            background: var(--primary-blue);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 4px;
+            box-shadow: 0 25px 70px rgba(0, 71, 255, 0.4);
+            position: relative;
+            z-index: 5; /* Ensure it overlaps the image below */
+            transition: transform 0.3s ease;
+            max-width: 500px; /* Constrain width */
+        }
+
+        .membership-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .membership-card h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .membership-card p {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        .membership-image {
+            width: 100%;
+            max-width: 450px;
+            height: 500px;
+            /* Placeholder: Woman in clothing store */
+            background: url('https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+            border-radius: 4px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            position: absolute;
+            top: 200px; /* Positioned to be below the blue card */
+            left: 100px; /* Pushed to the right */
+            z-index: 4;
+            transform: rotate(-3deg);
+        }
+
+        /* Stats Section (4M 10) */
+        .stats-section {
+            padding: 10rem 5% 6rem; /* Top padding to account for the overlapping image */
+            background: var(--light-gray);
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 4rem;
+            line-height: 1.1;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 8rem; /* Increased gap to match screenshot spacing */
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 8rem; /* Increased size to match screenshot dominance */
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label-text {
+            font-size: 1rem; /* Slightly larger for emphasis */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark); /* Changed to dark for prominence, but should be the gray shade */
+            font-weight: 600;
+        }
+        
+        /* Brands Section */
+        .brands-section {
+            padding: 6rem 5% 8rem;
+            background: var(--light-gray);
+            position: relative;
+        }
+
+        .brands-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brands-header {
+            max-width: 500px; /* Constrain header width */
+            margin-bottom: 4rem;
+        }
+
+        .brands-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .brands-grid {
+            position: relative;
+            min-height: 800px; /* Ensure enough space for absolute positioning */
+        }
+        
+        /* Large Blue Circle 3 (Bottom Left) */
+        .blue-circle-3 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            opacity: 0.9;
+            z-index: 1;
+        }
+        
+        /* Brand Card Styling (Absolute Positioning) */
+        .brand-card {
+             position: absolute;
+             background: white;
+             border-radius: 4px;
+             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15); 
+             overflow: hidden;
+             transition: transform 0.3s ease;
+             z-index: 5; /* Ensure cards are on top */
+        }
+        
+        .brand-card:hover {
+             transform: translateY(-5px);
+        }
+
+        .brand-image {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .brand-card.fabletics {
+            width: 380px;
+            bottom: 0; 
+            left: 0;
+        }
+
+        .brand-card.fabletics .brand-image {
+            /* Placeholder: Fabletics - woman in activewear */
+            background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        .brand-card.shoedazzle {
+            width: 450px;
+            top: 50px; 
+            right: 0; 
+        }
+
+        .brand-card.shoedazzle .brand-image {
+            /* Placeholder: ShoeDazzle - shoes */
+            background-image: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        .brand-card.justfab {
+            width: 350px;
+            bottom: 100px; 
+            left: 300px; /* Positioned to overlap the others */
+            transform: rotate(-3deg);
+        }
+
+        .brand-card.justfab .brand-image {
+            /* Placeholder: JustFab - clothing/accessories */
+            background-image: url('https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        .brand-content {
+            padding: 2rem;
+        }
+
+        .brand-name {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .brand-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .side-text {
+            position: absolute;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .side-text.left {
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .side-text.right {
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 8rem 5% 12rem; /* Added bottom padding to create whitespace below the team section */
+            background: var(--white);
+            position: relative;
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .team-image-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .team-image {
+            width: 100%;
+            max-width: 550px;
+            height: 600px;
+            /* Placeholder: Team image (group of people) */
+            background: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+            border-radius: 4px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        /* Small Blue Circle 4 (Team section, bottom left) */
+        .team-image-container::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            bottom: -50px; /* Positioned bottom left */
+            left: -50px;
+            z-index: -1;
+        }
+
+        .team-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .team-content p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-image-container {
+                /* FLIP: Change padding to left */
+                padding-left: 0; 
+            }
+            .hero-image {
+                 max-width: 400px;
+            }
+            .overlap-container, .innovation-container, .brands-grid {
+                 /* Adjust height for smaller screens before stacking */
+                 min-height: 500px;
+            }
+            .card-3-text {
+                 width: 400px;
+            }
+            .card-2 {
+                 left: 200px;
+            }
+            .card-5-image {
+                 width: 450px;
+            }
+            .brand-card.justfab {
+                 left: 250px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                min-height: auto;
+                /* FLIP: Remove grid areas for mobile stacking */
+                grid-template-areas: none; 
+            }
+            
+            /* Reset hero content alignment on mobile */
+            .hero-content {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: left;
+            }
+
+            .hero-content h1, .hero-content .card-label, .hero-subtitle {
+                text-align: left; 
+            }
+
+            .hero-image-container {
+                order: -1;
+                justify-content: center;
+                padding-top: 0;
+                /* FLIP: Reset padding-right to 0 and re-center */
+                padding-right: 0; 
+            }
+            
+            /* Hide the small text overlap block in mobile */
+            .white-text-bg-blue {
+                 display: none;
+            }
+            
+            /* Remove absolute positioning and stack cards */
+            .overlap-container,
+            .innovation-container,
+            .brands-grid {
+                position: relative;
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .card-wrapper,
+            .brand-card {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                width: 100% !important;
+                max-width: 500px;
+                margin: 0 auto;
+                transform: none !important; /* Remove rotations on mobile */
+            }
+            
+            .card-1, .card-2, .card-5-image {
+                 height: 350px !important; /* Standardize image heights */
+            }
+            
+            .membership-container,
+            .team-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .membership-image {
+                 position: relative;
+                 top: auto;
+                 left: auto;
+                 margin-top: 2rem;
+                 max-width: 100%;
+                 height: 350px;
+                 transform: none;
+            }
+            
+            .social-icons, .side-text, .hero-bg-shapes::before, .blue-circle-2, .blue-circle-3 {
+                 display: none; /* Hide background elements that complicate mobile layout */
+            }
+            
+            .team-image-container::before {
+                 display: none;
+            }
+            
+            .team-image {
+                 max-width: 100%;
+                 height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: left 0.3s;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .stats-grid {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .stat-number {
+                font-size: 5rem;
+            }
+            
+            .card-content {
+                 padding: 2rem; /* Reduce padding on small screen cards */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">TechStyle</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">about us.</a></li>
+                <li><a href="#brands">our brands.</a></li>
+                <li><a href="#platform">our platform.</a></li>
+                <li><a href="#team">work here.</a></li>
+                <li><a href="#news">news.</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <div class="social-icons">
+        <div class="social-icon"></div>
+        <div class="social-icon"></div>
+        <div class="social-icon"></div>
+    </div>
+
+    <section class="hero" id="platform">
+        <div class="hero-bg-shapes"></div>
+        <div class="hero-image-container">
+            <div class="hero-image"></div>
+        </div>
+        <div class="hero-content">
+            <div class="card-label hero-label">— our platform</div>
+            <h1>A platform to build</h1>
+            <p class="hero-subtitle">
+                <span class="highlight">high-value</span> fashion brands and efficiently distribute them <span class="highlight">across the globe</span>
+            </p>
+        </div>
+    </section>
+    
+    <div class="white-text-bg-blue">
+        <p>TechStyle is a fashion and lifestyle company building high-value membership-based brands.</p>
+    </div>
+
+    <section class="section-innovation-overlap">
+        <div class="overlap-container container">
+            <div class="blue-circle-2"></div>
+            
+            <div class="card-wrapper card-1">
+                <div class="card-image"></div>
+            </div>
+            
+            <div class="card-wrapper card-2">
+                <div class="card-image"></div>
+            </div>
+            
+            <div class="card-wrapper card-3-text">
+                <div class="card-label">— powered by</div>
+                <h3 class="section-header-title">Powered by TechStyle LABS</h3>
+                <p>While servicing over <strong>4 million active members</strong>, we use technology, data and personalization to hedge business risk and increase customer satisfaction.</p>
+                <a href="#" class="read-more">read more</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="innovation-section">
+        <div class="innovation-container container">
+            
+            <div class="card-wrapper card-4-text">
+                <div class="card-label">— leading fashion</div>
+                <h3 class="section-header-title">Innovation</h3>
+                <p>We sell our own <strong>exclusive labels</strong> through a unique combination of proprietary technology, on-trend design, integrated <strong>ROI based</strong> media and membership commerce.</p>
+                <a href="#" class="read-more">read more</a>
+            </div>
+            
+            <div class="card-wrapper card-5-image">
+                <div class="card-image"></div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="membership-section">
+        <div class="membership-container container">
+            <div class="membership-text">
+                <div class="card-label">— our platform</div>
+                <h2>The secret to our success</h2>
+            </div>
+            <div class="membership-card-area">
+                <div class="membership-card">
+                    <h3>Membership Commerce</h3>
+                    <p>At TechStyle we are pioneering direct to consumer fashion commerce using data and personalization, along with a new level of relationship between customer and brand, that is revolutionizing the value exchange.</p>
+                    <a href="#" class="btn-outline">Read More</a>
+                </div>
+                <div class="membership-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container container">
+            <div class="card-label">— data driven</div>
+            <h2 class="stats-title">Focused on ROI & Growth</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">4M</div>
+                    <div class="stat-label-text">Happy Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label-text">Countries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands-section" id="brands">
+        <div class="brands-container container">
+            <div class="brands-header">
+                <div class="card-label">— member based</div>
+                <h2>High value brands</h2>
+            </div>
+            <div class="brands-grid">
+                <div class="blue-circle-3"></div>
+                
+                <div class="side-text left">WHERE FITNESS AND FASHION MEET</div>
+                
+                <div class="brand-card fabletics">
+                    <div class="brand-image"></div>
+                    <div class="brand-content">
+                        <h3 class="brand-name">FABLETICS</h3>
+                        <p class="brand-description">Co-founded by Kate Hudson, Fabletics offers high quality fashion forward active-wear for women.</p>
+                        <a href="#" class="read-more">read more</a>
+                    </div>
+                </div>
+
+                <div class="brand-card shoedazzle">
+                    <div class="brand-image"></div>
+                    <div class="brand-content">
+                        <h3 class="brand-name">SHOEDAZZLE</h3>
+                        <p class="brand-description">ShoeDazzle reinvented the way you shop for shoes, with a personalized online showroom and a new collection every month.</p>
+                        <a href="#" class="read-more">read more</a>
+                    </div>
+                </div>
+
+                <div class="brand-card justfab">
+                    <div class="brand-image"></div>
+                    <div class="brand-content">
+                        <h3 class="brand-name">JUSTFAB</h3>
+                        <p class="brand-description">JustFab gives people access to the fashion they want at the value they love.</p>
+                        <a href="#" class="read-more">read more</a>
+                    </div>
+                </div>
+
+                <div class="side-text right">CURATED FOR THE INSATIABLE SHOE FANATIC</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section" id="team">
+        <div class="team-container container">
+            <div class="team-image-container">
+                <div class="team-image"></div>
+            </div>
+            <div class="team-content">
+                <div class="card-label">— dream team</div>
+                <h2>Driven by our dynamic teams</h2>
+                <p>We are a culture of <strong>innovation</strong> bringing <strong>execution</strong> and passion to design, manufacturing, supply chain, technology, culture and service.</p>
+                <a href="#" class="read-more">read more</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 TechStyle. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Toggle between Hamburger and Close icon
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Check if the target is an element with an ID, not just a section
+                    const offset = 80; // Adjust for fixed navbar height
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
